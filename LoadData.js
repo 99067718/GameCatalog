@@ -57,8 +57,11 @@ var dict = {
 
 function goToPage(name, description, image, icon, rating, genre){
   var mainView = document.getElementById("MainView");
-  var outerBox = document.createElement("div");
-  outerBox.innerText = name + description ;
+  // var b = document.getElementById(name, description, image, icon, rating, genre).value,
+  
+    url = './GamePage.html?name=' + encodeURIComponent(name);
+
+    window.location.href = url;
   mainView.appendChild(outerBox);
 }
 
@@ -88,8 +91,6 @@ for (i = 0; i < dict['Games'].length; i ++){
     // console.log(dict['Games'])
     // console.log(triggerButton.value)
     // console.log(dict['Games'][triggerButton.value])
-    console.log(this);
-    alert(this.value);
     goToPage(dict['Games'][this.value].Name, dict['Games'][this.value].Description, dict['Games'][this.value].Icon, dict['Games'][this.value].Rating, dict['Games'][this.value].Genre); };
 
   DescriptionAndButtonHolder.appendChild(gameDescription);
