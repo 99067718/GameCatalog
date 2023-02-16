@@ -1,0 +1,48 @@
+#MainView{
+    background-color: green;
+    border-radius: 10px;
+    padding: 10px;
+}
+#genreDisplay{
+    display: flex;
+    margin: 5px;
+    flex-direction: row;
+}
+.Genre{
+    display: flex;
+    margin-left: 10px;
+    border-style:solid;
+    padding: 5px;
+}
+#IconDisplay{
+    border-radius: 1rem;
+}
+#TitleAndIcon{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#Title{
+    font-size: 50px;
+    margin-left: 10px;
+}
+#HomeButton{
+    border-radius: 10px;
+    border-style: dashed;
+    background-color: gray;
+    height: 20px;
+    width: 50px;
+}
+#MainContent{
+    display: flex;
+    flex-direction: row;
+    border-style: solid;
+}
+#RatingBox{
+    border-left: solid;
+    width: 50px;
+    padding: 20px;
+}
+#Other{
+    width: 1200px;
+}

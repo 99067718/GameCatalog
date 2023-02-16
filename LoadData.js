@@ -24,11 +24,11 @@ var dict = {
       {
         "Name":"Portal",
         "Link":"https://www.minecraft.net/en-us",
-        "Description":"Portal is an ineteresting game made by Valve",
+        "Description":"Portal is an interesting game made by Valve, its all about solving puzzles with the help of a portal gun.",
         "Image":"https://cdn.cloudflare.steamstatic.com/steam/apps/400/capsule_616x353.jpg?t=1673562889",
         "ShortDescription":"Portal is one of the best Valve games...",
         "Rating": 5,
-        "Genre":"Science",
+        "Genre":"Puzzle, Science",
         "Icon": "https://upload.wikimedia.org/wikipedia/en/9/9f/Portal_standalonebox.jpg"
     },
     {
@@ -38,7 +38,7 @@ var dict = {
         "Image":"https://www.nme.com/wp-content/uploads/2020/07/072020-Portal-2-Valve.jpeg",
         "ShortDescription":"Portal 2 is the sequel of Portal...",
         "Rating": 5,
-        "Genre":"Horror",
+        "Genre":"Puzzle, Science",
         "Icon": "https://upload.wikimedia.org/wikipedia/en/f/f9/Portal2cover.jpg"
     },
     {
@@ -91,7 +91,7 @@ for (i = 0; i < dict['Games'].length; i ++){
     // console.log(dict['Games'])
     // console.log(triggerButton.value)
     // console.log(dict['Games'][triggerButton.value])
-    goToPage(dict['Games'][this.value].Name, dict['Games'][this.value].Description, dict['Games'][this.value].Icon, dict['Games'][this.value].Rating, dict['Games'][this.value].Genre); };
+    goToPage(dict['Games'][this.value].Name, dict['Games'][this.value].Description,dict['Games'][this.value].Image, dict['Games'][this.value].Icon, dict['Games'][this.value].Rating, dict['Games'][this.value].Genre); };
 
   DescriptionAndButtonHolder.appendChild(gameDescription);
   DescriptionAndButtonHolder.appendChild(triggerButton);
