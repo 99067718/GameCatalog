@@ -59,7 +59,7 @@ function goToPage(name, description, image, icon, rating, genre){
   var mainView = document.getElementById("MainView");
   // var b = document.getElementById(name, description, image, icon, rating, genre).value,
   
-    url = './GamePage.html?name=' + encodeURIComponent(name);
+    url = './GamePage.html?name=' + encodeURIComponent(name) + '?description=' + encodeURIComponent(description);
 
     window.location.href = url;
   mainView.appendChild(outerBox);
