@@ -18,7 +18,7 @@ var dict = {
           "Image":"https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_4/H2x1_NSwitch_Minecraft.jpg",
           "ShortDescription":"Minecraft is a game with blocks...",
           "Rating": 5,
-          "Genre":"Horror",
+          "Genre":"Horror, Sandbox",
           "Icon": "https://cdn.icon-icons.com/icons2/2699/PNG/512/minecraft_logo_icon_168974.png"
       },
       {
@@ -42,13 +42,23 @@ var dict = {
         "Icon": "https://upload.wikimedia.org/wikipedia/en/f/f9/Portal2cover.jpg"
     },
     {
+      "Name":"School",
+      "Link":"https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "Description":"1 + 1 = 31 or no, It's not",
+      "Image":"http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcTTQgKWWuFHFN15SletsEiLk9LLYwIwYBPcMsFTUvzA3hLCAPj2OoXUD-mshFnl0UuLF-Isp4ijAQSBWcKTnwc",
+      "ShortDescription":"1 + 1 = ???",
+      "Rating": 5,
+      "Genre":"Horror, Learning, Sandbox, Laptop",
+      "Icon": "https://i.pinimg.com/originals/d8/5d/12/d85d1281168e17358b440744545046ce.jpg"
+    },
+    {
         "Name":"Rick's Relentless Rhythm",
         "Link":"https://www.youtube.com/watch?v=dQw4w9WgXcQ",
         "Description":"He will never give you up and never let you down.",
         "Image":"https://i.insider.com/602ee9e3d3ad27001837f2af?width=1200&format=jpeg",
         "ShortDescription":"Never gonna give you up, never gonna let you down...",
         "Rating": 5,
-        "Genre":"Giving Up",
+        "Genre":"Giving Up, RickRoll",
         "Icon": "https://media.tenor.com/x8v1oNUOmg4AAAAd/rickroll-roll.gif"
     }
   ]
