@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="StyleGamePage.css">
+    <title>Document</title>
+</head>
+<body>
+    <a href="./page.html"><p id="HomeButton">Home</p></a>
+    <div id="MainView">
+        <div id="MainContent">
+            <div id="Other">
+                <div id="TitleAndIcon">
+                    <img id="IconDisplay">
+                    <h1 id="Title">Enter title here</h1>
+                </div>
+                <p id="description">Game Description</p>
+                <div id="genreDisplay"></div>
+            </div>
+            <div id="RatingBox">
+                <p id="ratingDisplay">rating</p>
+            </div>
+        </div>
+        <img id="gameImageDisplay">
+    </div>
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        var mainView = document.getElementById("MainView")
+        
+        const gameName = urlParams.get('name')
+        const gameDescription = urlParams.get('description')
+        const gameImage = urlParams.get('image')
+        const gameIcon = urlParams.get('icon')
+        const Rating = urlParams.get('rating')
+        const Genre = urlParams.get('genre')
+
+        document.getElementById("Title").innerText = gameName;
+        document.getElementById("description").innerText = gameDescription;
+        var Genres = document.getElementById('genreDisplay');
+        document.getElementById("ratingDisplay").innerText = 'Rating: ' + Rating;
+        document.getElementById("IconDisplay").src = gameIcon;
+        document.getElementById("gameImageDisplay").src = gameImage
+        document.getElementById("IconDisplay").width = 150;
+        document.getElementById("IconDisplay").height = 150;
+        var GenresList = Genre.split(", ")
+        for (i = 0;i < GenresList.length; i++){
+            var newElement = document.createElement("p")
+            newElement.classList.add("Genre")
+            newElement.innerText = GenresList[i]
+            Genres.appendChild(newElement);
+        }
+        </script>
+</body>
+</html>
