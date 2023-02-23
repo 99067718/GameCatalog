@@ -134,6 +134,8 @@ for (i = 0; i < dict['Games'].length; i ++){
   var IconAndName = document.createElement("div");
   var DescriptionAndButtonHolder = document.createElement("div");
   var triggerButton = document.createElement("button");
+  var addToCartButton = document.createElement("button")
+  addToCartButton.innerText = "add to cart"
   
   triggerButton.innerText = "Show more";
   gameDescription.innerText = dict['Games'][i].ShortDescription;
@@ -155,6 +157,7 @@ for (i = 0; i < dict['Games'].length; i ++){
 
   DescriptionAndButtonHolder.appendChild(gameDescription);
   DescriptionAndButtonHolder.appendChild(triggerButton);
+  DescriptionAndButtonHolder.appendChild(addToCartButton);
   IconAndName.appendChild(gameTitle);
   IconAndName.appendChild(gameIcon);
   element.appendChild(IconAndName);
