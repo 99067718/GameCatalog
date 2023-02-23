@@ -16,6 +16,7 @@
 }
 #IconDisplay{
     border-radius: 1rem;
+    height: 200px;
 }
 #TitleAndIcon{
     display: flex;
@@ -26,12 +27,9 @@
     font-size: 50px;
     margin-left: 10px;
 }
-#HomeButton{
-    border-radius: 10px;
+#NavigationTab > *{
+    border-radius: 30px;
     border-style: dashed;
-    background-color: gray;
-    height: 20px;
-    width: 50px;
 }
 #MainContent{
     display: flex;
@@ -50,11 +48,11 @@
 }
 .gameImageDisplay{
     width: 500px;
+    padding: 10px;
 }
 #GameImages{
     display: flex;
     flex-direction: row;
-    padding: 10px;
 }
 .TemplateSmall{
     background-color: brown;
@@ -79,4 +77,7 @@
 }
 .Description{
     font-size: large;
+}
+#MainDescription{
+    font-size: 40px;
 }

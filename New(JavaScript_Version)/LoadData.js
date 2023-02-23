@@ -78,19 +78,39 @@ var dict = {
 var Cart = document.getElementById("Cart")
 var GameViewer = document.getElementById("GameViewer")
 var MainPage = document.getElementById("MainView")
+var ReturnHomeButton = document.getElementById("ReturnHome")
 GameViewer.style.display = "none"
 Cart.style.display = "none"
 
+ReturnHomeButton.onclick = returnHome;
+ReturnHomeButton.disabled = true
+function returnHome(){
+  ReturnHomeButton.disabled = true
+  MainPage.style.display = ""
+  Cart.style.display = "none"
+  GameViewer.style.display = "none"
+}
+
 function ShowSelectedGame(id){
+  ReturnHomeButton.disabled = false
   var current = dict['Games'][id]
   MainPage.style.display = "none"
   Cart.style.display = "none"
   GameViewer.style.display = ""
 
   document.getElementById("IconDisplay").src = current.Icon
-  document.getElementById("genreDisplay").innerText = current.Genre
+  //
+  var genres = current.Genre.split(", ")
+  document.getElementById("genreDisplay").innerHTML = ""
+  for (i = 0; i < genres.length; i ++){
+    var newDiv = document.createElement("h1")
+    newDiv.classList.add("Genre")
+    newDiv.innerText = genres[i]
+    document.getElementById("genreDisplay").appendChild(newDiv);
+  }
+  //
   document.getElementById("Title").innerText = current.Name
-  document.getElementById("description").innerText = current.Description
+  document.getElementById("MainDescription").innerText = current.Description
   document.getElementById("ratingDisplay").innerText = `${current.Rating} stars`
   document.getElementById("price").innerText = `Price: €${current.Price}`
   document.getElementById("tags").innerText = `Tags: ${current.Tag}`
