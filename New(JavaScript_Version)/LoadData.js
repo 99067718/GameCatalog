@@ -79,6 +79,7 @@ var Cart = document.getElementById("Cart")
 var GameViewer = document.getElementById("GameViewer")
 var MainPage = document.getElementById("MainView")
 var ReturnHomeButton = document.getElementById("ReturnHome")
+var ItemsInCart = []
 GameViewer.style.display = "none"
 Cart.style.display = "none"
 
@@ -97,6 +98,7 @@ function ShowSelectedGame(id){
   MainPage.style.display = "none"
   Cart.style.display = "none"
   GameViewer.style.display = ""
+  document.getElementById("AddToCart").value = id;
 
   document.getElementById("IconDisplay").src = current.Icon
   //
@@ -149,6 +151,7 @@ for (i = 0; i < dict['Games'].length; i ++){
   gameDescription.classList.add("Description");
   
   triggerButton.value = i;
+  addToCartButton.value = i;
   triggerButton.onclick = function () { 
     // console.log(dict['Games'])
     // console.log(triggerButton.value)
@@ -163,7 +166,18 @@ for (i = 0; i < dict['Games'].length; i ++){
   element.appendChild(IconAndName);
   element.appendChild(DescriptionAndButtonHolder);
 
+  addToCartButton.onclick = function(){addToCart(this.value)} 
+
+  function addToCart(GameId){
+    if (ItemsInCart.includes(dict["Games"][GameId].Name)){
+      console.log(dict["Games"][GameId].Name + " is already in cart")
+    }
+    else{
+      ItemsInCart.push(dict["Games"][GameId].Name);
+    }
+  }
 
   var mainDiv = document.getElementById("TemplateMain");
   mainDiv.appendChild(element);
 }
+document.getElementById("AddToCart").onclick = function(){addToCart(this.value)}
