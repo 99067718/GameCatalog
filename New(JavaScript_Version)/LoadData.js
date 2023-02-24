@@ -85,6 +85,40 @@ Cart.style.display = "none"
 
 ReturnHomeButton.onclick = returnHome;
 ReturnHomeButton.disabled = true
+
+
+function showCart(){
+  MainPage.style.display = "none"
+  Cart.style.display = ""
+  GameViewer.style.display = "none"
+  ReturnHomeButton.disabled = false
+
+  var cartItemsHolder = document.getElementById("CartItems")
+  cartItemsHolder.innerHTML = ""
+  for (i = 0; i < ItemsInCart.length; i++){
+    var GameID = ItemsInCart[i]
+    var newItem = document.createElement("div")
+    var gameIconHolder = document.createElement("img")
+    var NameAndDescriptionHolder = document.createElement("div")
+    
+    gameIconHolder.src = dict["Games"][GameID].Icon
+    newItem.appendChild(gameIconHolder)
+
+    var nameLabel = document.createElement("h1")
+    nameLabel.innerText = dict["Games"][GameID].Name
+    NameAndDescriptionHolder.appendChild(nameLabel)
+
+    var descriptionHolder = document.createElement("p")
+    descriptionHolder.innerText = dict["Games"][GameID].ShortDescription
+    NameAndDescriptionHolder.appendChild(descriptionHolder)
+
+    newItem.appendChild(NameAndDescriptionHolder)
+    newItem.classList.add("CartItem")
+    cartItemsHolder.appendChild(newItem)
+  }
+}
+
+document.getElementById("GoToCart").onclick = function(){showCart()}
 function returnHome(){
   ReturnHomeButton.disabled = true
   MainPage.style.display = ""
@@ -125,6 +159,14 @@ function ShowSelectedGame(id){
     GameThumbnails.append(newThumbnail)
   }
   
+}
+function addToCart(GameId){
+  if (ItemsInCart.includes(GameId)){
+    console.log(dict["Games"][GameId].Name + " is already in cart")
+  }
+  else{
+    ItemsInCart.push(GameId);
+  }
 }
 
 for (i = 0; i < dict['Games'].length; i ++){
@@ -167,15 +209,6 @@ for (i = 0; i < dict['Games'].length; i ++){
   element.appendChild(DescriptionAndButtonHolder);
 
   addToCartButton.onclick = function(){addToCart(this.value)} 
-
-  function addToCart(GameId){
-    if (ItemsInCart.includes(dict["Games"][GameId].Name)){
-      console.log(dict["Games"][GameId].Name + " is already in cart")
-    }
-    else{
-      ItemsInCart.push(dict["Games"][GameId].Name);
-    }
-  }
 
   var mainDiv = document.getElementById("TemplateMain");
   mainDiv.appendChild(element);

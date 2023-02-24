@@ -81,3 +81,18 @@
 #MainDescription{
     font-size: 40px;
 }
+.CartItem{
+    border: 1px solid black;
+    margin: 1rem;
+    padding: 2rem 2rem;
+    border-radius: 30px;
+}
+.CartItem > * {
+    display: inline-block;
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+.CartItem > img{
+    border-radius: 30px;
+    height: 150px;
+}
