@@ -81,6 +81,7 @@ var MainPage = document.getElementById("MainView")
 var ReturnHomeButton = document.getElementById("ReturnHome")
 var CartButton = document.getElementById("GoToCart")
 var ItemsInCart = []
+var FilterGui = document.getElementById("Filters")
 GameViewer.style.display = "none"
 Cart.style.display = "none"
 
@@ -92,6 +93,7 @@ function showCart(){
   MainPage.style.display = "none"
   Cart.style.display = ""
   GameViewer.style.display = "none"
+  FilterGui.style.display = "none"
   CartButton.disabled = true
   ReturnHomeButton.disabled = false
 
@@ -121,7 +123,7 @@ function showCart(){
     RemoveFromCartButton.onclick = function(){
       ItemsInCart.splice(this.value, 1)
       showCart()
-      console.log("removed item from cart")
+      snackbar(false)
     }
 
     newItem.appendChild(NameAndDescriptionHolder)
@@ -141,6 +143,7 @@ function returnHome(){
   MainPage.style.display = ""
   Cart.style.display = "none"
   GameViewer.style.display = "none"
+  FilterGui.style.display = "flex"
 }
 
 function ShowSelectedGame(id){
@@ -150,6 +153,7 @@ function ShowSelectedGame(id){
   MainPage.style.display = "none"
   Cart.style.display = "none"
   GameViewer.style.display = ""
+  FilterGui.style.display = "none"
   document.getElementById("AddToCart").value = id;
 
   document.getElementById("IconDisplay").src = current.Icon
@@ -178,12 +182,29 @@ function ShowSelectedGame(id){
   }
   
 }
+function snackbar(added = true) {
+  // Get the snackbar DIV
+  var x = document.getElementById("snackbar");
+  if (added){
+    x.innerText = "Added item to cart"
+  }
+  else{
+    x.innerText = "Removed item from cart"
+  }
+  // Add the "show" class to DIV
+  x.className = "show";
+
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
 function addToCart(GameId){
   if (ItemsInCart.includes(GameId)){
     console.log(dict["Games"][GameId].Name + " is already in cart")
   }
   else{
     ItemsInCart.push(GameId);
+    snackbar()
   }
 }
 var AddedGenres = []
