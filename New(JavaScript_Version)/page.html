@@ -13,6 +13,23 @@
         <button id="ReturnHome">Return to GameCatalog</button>
         <button id="GoToCart">Open Cart</button>
     </div>
+    <div id="Filters">
+        <div>
+            <p>Minimum Rating</p>
+            <input id="MinimumRating" type="number" max="5" min="0">
+        </div>
+        <div>
+            <p>Genre</p>
+            <select id="ChosenGenre">
+                <option value="All">All</option>
+            </select>
+        </div>
+        <div>
+            <p>Maximum Price</p>
+            <input id="Maxprice">
+        </div>
+        <button id="SubmitFilters">Submit</button>
+    </div>
     <div id="MainView">
         <h1>Game Catalog</h1>
         <div id="TemplateMain">
@@ -48,6 +65,7 @@
         <div id="CartItems">
 
         </div>
+        <p id="TotalPrice">No money?</p>
     </div>
 </body>
 </html>

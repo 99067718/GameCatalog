@@ -79,6 +79,7 @@ var Cart = document.getElementById("Cart")
 var GameViewer = document.getElementById("GameViewer")
 var MainPage = document.getElementById("MainView")
 var ReturnHomeButton = document.getElementById("ReturnHome")
+var CartButton = document.getElementById("GoToCart")
 var ItemsInCart = []
 GameViewer.style.display = "none"
 Cart.style.display = "none"
@@ -91,8 +92,10 @@ function showCart(){
   MainPage.style.display = "none"
   Cart.style.display = ""
   GameViewer.style.display = "none"
+  CartButton.disabled = true
   ReturnHomeButton.disabled = false
 
+  var TotalPrice = 0;
   var cartItemsHolder = document.getElementById("CartItems")
   cartItemsHolder.innerHTML = ""
   for (i = 0; i < ItemsInCart.length; i++){
@@ -100,9 +103,13 @@ function showCart(){
     var newItem = document.createElement("div")
     var gameIconHolder = document.createElement("img")
     var NameAndDescriptionHolder = document.createElement("div")
+    var RemoveFromCartButton = document.createElement("button")
     
     gameIconHolder.src = dict["Games"][GameID].Icon
     newItem.appendChild(gameIconHolder)
+    RemoveFromCartButton.innerText = "Remove from cart"
+    RemoveFromCartButton.style.float = "right"
+    RemoveFromCartButton.value = i
 
     var nameLabel = document.createElement("h1")
     nameLabel.innerText = dict["Games"][GameID].Name
@@ -111,16 +118,26 @@ function showCart(){
     var descriptionHolder = document.createElement("p")
     descriptionHolder.innerText = dict["Games"][GameID].ShortDescription
     NameAndDescriptionHolder.appendChild(descriptionHolder)
+    RemoveFromCartButton.onclick = function(){
+      ItemsInCart.splice(this.value, 1)
+      showCart()
+      console.log("removed item from cart")
+    }
 
     newItem.appendChild(NameAndDescriptionHolder)
     newItem.classList.add("CartItem")
     cartItemsHolder.appendChild(newItem)
+    newItem.appendChild(RemoveFromCartButton)
+    var currentPrice = dict["Games"][GameID].Price
+    TotalPrice += currentPrice
   }
+  document.getElementById("TotalPrice").innerText = "Total Price: €" + TotalPrice
 }
 
 document.getElementById("GoToCart").onclick = function(){showCart()}
 function returnHome(){
   ReturnHomeButton.disabled = true
+  CartButton.disabled = false
   MainPage.style.display = ""
   Cart.style.display = "none"
   GameViewer.style.display = "none"
@@ -128,6 +145,7 @@ function returnHome(){
 
 function ShowSelectedGame(id){
   ReturnHomeButton.disabled = false
+  CartButton.disabled = false
   var current = dict['Games'][id]
   MainPage.style.display = "none"
   Cart.style.display = "none"
@@ -168,49 +186,84 @@ function addToCart(GameId){
     ItemsInCart.push(GameId);
   }
 }
-
-for (i = 0; i < dict['Games'].length; i ++){
-  console.log('Created')
-  var element = document.createElement("article");
-  var gameTitle = document.createElement("h1");
-  var gameDescription = document.createElement('p');
-  var gameIcon = document.createElement("img");
-  var IconAndName = document.createElement("div");
-  var DescriptionAndButtonHolder = document.createElement("div");
-  var triggerButton = document.createElement("button");
-  var addToCartButton = document.createElement("button")
-  addToCartButton.innerText = "add to cart"
+var AddedGenres = []
+var genrePicker = document.getElementById("ChosenGenre")
+function loadGames(genreFilter = "All", MaximumCostFilter = 999999, minimumRatingFilter = 0){
+  for (i = 0; i < dict['Games'].length; i ++){
+    console.log('Created')
+    console.log(i)
+    console.log(dict['Games'].length)
+    var element = document.createElement("article");
+    var gameTitle = document.createElement("h1");
+    var gameDescription = document.createElement('p');
+    var gameIcon = document.createElement("img");
+    var IconAndName = document.createElement("div");
+    var DescriptionAndButtonHolder = document.createElement("div");
+    var triggerButton = document.createElement("button");
+    var addToCartButton = document.createElement("button")
+    addToCartButton.innerText = "add to cart"
+    // add genre filters \\
+    var currentGenres = dict["Games"][i].Genre.split(", ")
+    for (c = 0; c < currentGenres.length; c++){
+      if (!AddedGenres.includes(currentGenres[c])){
+        AddedGenres.push(currentGenres[c])
+        var newOption = document.createElement("option");
+        newOption.innerText = currentGenres[c]
+        newOption.value = currentGenres[c]
+        genrePicker.appendChild(newOption)
+      }
+    }
+    // normal stuff \\
+    triggerButton.innerText = "Show more";
+    gameDescription.innerText = dict['Games'][i].ShortDescription;
+    gameTitle.innerText = dict['Games'][i].Name;
+    gameIcon.src = dict['Games'][i].Icon;
+    gameIcon.width = 150;
+    gameIcon.height = 150;
+    gameIcon.classList.add("Icons");
+    IconAndName.classList.add("MainItems");
+    element.classList.add("TemplateSmall");
+    gameDescription.classList.add("Description");
+    
+    triggerButton.value = i;
+    addToCartButton.value = i;
+    triggerButton.onclick = function () { 
+      // console.log(dict['Games'])
+      // console.log(triggerButton.value)
+      // console.log(dict['Games'][triggerButton.value])
+      ShowSelectedGame(this.value); };
   
-  triggerButton.innerText = "Show more";
-  gameDescription.innerText = dict['Games'][i].ShortDescription;
-  gameTitle.innerText = dict['Games'][i].Name;
-  gameIcon.src = dict['Games'][i].Icon;
-  gameIcon.width = 150;
-  gameIcon.height = 150;
-  gameIcon.classList.add("Icons");
-  IconAndName.classList.add("MainItems");
-  element.classList.add("TemplateSmall");
-  gameDescription.classList.add("Description");
+    DescriptionAndButtonHolder.appendChild(gameDescription);
+    DescriptionAndButtonHolder.appendChild(triggerButton);
+    DescriptionAndButtonHolder.appendChild(addToCartButton);
+    IconAndName.appendChild(gameTitle);
+    IconAndName.appendChild(gameIcon);
+    element.appendChild(IconAndName);
+    element.appendChild(DescriptionAndButtonHolder);
   
-  triggerButton.value = i;
-  addToCartButton.value = i;
-  triggerButton.onclick = function () { 
-    // console.log(dict['Games'])
-    // console.log(triggerButton.value)
-    // console.log(dict['Games'][triggerButton.value])
-    ShowSelectedGame(this.value); };
-
-  DescriptionAndButtonHolder.appendChild(gameDescription);
-  DescriptionAndButtonHolder.appendChild(triggerButton);
-  DescriptionAndButtonHolder.appendChild(addToCartButton);
-  IconAndName.appendChild(gameTitle);
-  IconAndName.appendChild(gameIcon);
-  element.appendChild(IconAndName);
-  element.appendChild(DescriptionAndButtonHolder);
-
-  addToCartButton.onclick = function(){addToCart(this.value)} 
-
-  var mainDiv = document.getElementById("TemplateMain");
-  mainDiv.appendChild(element);
+    addToCartButton.onclick = function(){addToCart(this.value)} 
+  
+    var mainDiv = document.getElementById("TemplateMain");
+    if (genreFilter == "All" || currentGenres.includes(genreFilter)){
+      if (dict["Games"][i].Rating >= minimumRatingFilter || minimumRatingFilter == ""){
+        if (dict["Games"][i].Price <= MaximumCostFilter || MaximumCostFilter == ""){
+          mainDiv.appendChild(element);
+        }
+      }
+    }
+  }
+  document.getElementById("AddToCart").onclick = function(){addToCart(this.value)}
 }
-document.getElementById("AddToCart").onclick = function(){addToCart(this.value)}
+
+var SubmitFiltersButton = document.getElementById("SubmitFilters")
+var GenrePickerGui = document.getElementById("ChosenGenre")
+var MaxPriceGui = document.getElementById("Maxprice")
+var MinRatingGui = document.getElementById("MinimumRating")
+console.log(GenrePickerGui.options[GenrePickerGui.selectedIndex].text)
+SubmitFiltersButton.onclick = function(){
+  var mainDiv = document.getElementById("TemplateMain")
+  mainDiv.innerHTML = ""
+  console.log(MaxPriceGui.value)
+  loadGames(GenrePickerGui.options[GenrePickerGui.selectedIndex].text, MaxPriceGui.value, MinRatingGui.value)
+} 
+loadGames()
